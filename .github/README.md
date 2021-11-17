@@ -211,7 +211,7 @@ In your template file you can use the defined srcset like this:
 ```
 <?= $image->focusSrcset('bart') ?>
 ``` 
-## Support for WebP and Avif files in Kirby 3.6+
+### Support for WebP and Avif files in Kirby 3.6+
 
 The format option can be use with `->focusCrop()`
 
