@@ -211,6 +211,55 @@ In your template file you can use the defined srcset like this:
 ```
 <?= $image->focusSrcset('bart') ?>
 ``` 
+## Support for WebP and Avif files in Kirby 3.6+
+
+The format option can be use with `->focusCrop()`
+
+```
+<?php
+  // you need a Kirby image object like this
+  $image = $page->images()->first();
+
+  echo $image->focusCrop(1200, 600, ['format' => 'avif']);
+  echo $image->focusCrop(1200, 600, ['format' => 'webp']);
+  echo $image->focusCrop(1200, 600, ['format' => 'jpeg']);
+
+?>
+
+```
+
+You can now use the native WebP and Avif support with `->focusSrcset()` by supplying the format as the first parameter
+
+```
+<?php
+  // you need a Kirby image object like this
+  $image = $page->images()->first();
+
+  // With src set
+  $set = $image->focusSrcset(
+    'webp',  
+    [
+      '800w' => [
+        'width' => 800,
+        'height' => 800,
+      ],
+      '1400w' => [
+        'width' => 1400,
+        'height' => 1400,
+      ],
+    ]);
+  
+  // with a config preset
+  $set = $image->focusSrcset('avif', 'yourpreset');
+
+?>
+
+
+<img 
+  src="<?= $image->focusCrop(1000, 1000, ['format' => 'webp'])->url() ?>"
+  srcset="<?= $set ?>"
+>
+```
 
 
 ## Extensions and implementations
